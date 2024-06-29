@@ -6,11 +6,15 @@ import createCache from "@emotion/cache";
 import { prefixer } from "stylis";
 import { Button } from "@mui/material";
 
+import Header from "./components/ui/Header";
 import "./App.css";
 
 //NOTE Create Custom Theme
 const theme = createTheme({
   direction: "rtl",
+  typography: {
+    fontFamily: "vazir, roboto",
+  },
 });
 
 //NOTE Create RTL Cache
@@ -27,9 +31,15 @@ function App() {
           <Helmet>
             <title>وب سایت شخصی یونس قربانی</title>
           </Helmet>
-          <div className="App">
-            <Button variant="contained">کلیک کن</Button>
-          </div>
+          <Header />
+          {[...new Array(200)]
+            .map(
+              () => `Cras mattis consectetur purus sit amet fermentum.
+Cras justo odio, dapibus ac facilisis in, egestas eget quam.
+Morbi leo risus, porta ac consectetur ac, vestibulum at eros.
+Praesent commodo cursus magna, vel scelerisque nisl consectetur et.`
+            )
+            .join("\n")}
         </HelmetProvider>
       </ThemeProvider>
     </CacheProvider>
