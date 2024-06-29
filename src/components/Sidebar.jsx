@@ -5,14 +5,10 @@ import { Drawer, Fab, Box } from "@mui/material";
 import { grey, red } from "@mui/material/colors";
 import { MenuRounded } from "@mui/icons-material";
 
-import DrawerContent from "./ui/DrawerContent";
+import DrawerContent from "./DrawerContent";
 
 const Sidebar = ({ value, handleChange }) => {
     const [drawerOpen, setDrawerOpen] = useState(false);
-
-    const handleDrawerToggle = () => {
-        setDrawerOpen(!drawerOpen);
-    };
 
     return (
         <Grid
@@ -35,11 +31,10 @@ const Sidebar = ({ value, handleChange }) => {
                 }}
             >
                 <Fab
-                    color="primary"
                     aria-label="Sidebar"
                     size="small"
-                    sx={{ m: 2 }}
-                    onClick={handleDrawerToggle}
+                    onClick={() => setDrawerOpen(true)}
+                    sx={{ backgroundColor: red[500], m: 2 }}
                 >
                     <MenuRounded />
                 </Fab>
@@ -53,10 +48,20 @@ const Sidebar = ({ value, handleChange }) => {
                     "& .MuiDrawer-paper": {
                         width: 300,
                     },
+                    display: {
+                        xs: "block",
+                        sm: "block",
+                        md: "none",
+                        lg: "none",
+                    },
                 }}
             >
                 {/* Drawer */}
-                <DrawerContent value={value} handleChange={handleChange} />
+                <DrawerContent
+                    value={value}
+                    handleChange={handleChange}
+                    setDrawerOpen={setDrawerOpen}
+                />
             </Drawer>
         </Grid>
     );
