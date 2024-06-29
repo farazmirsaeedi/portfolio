@@ -1,5 +1,11 @@
 import { cloneElement } from "react";
-import { AppBar, Toolbar, Button, useScrollTrigger } from "@mui/material";
+import {
+  AppBar,
+  Toolbar,
+  Button,
+  useScrollTrigger,
+  Typography,
+} from "@mui/material";
 
 const Header = () => {
   function ElevationScroll(props) {
@@ -20,7 +26,7 @@ const Header = () => {
       <ElevationScroll>
         <AppBar>
           <Toolbar>
-            <p>وب سایت شخصی یونس قربانی</p>
+            <Typography variant="h4">وب سایت شخصی</Typography>
             <Button variant="text" color="secondary">
               کلیک کن
             </Button>
