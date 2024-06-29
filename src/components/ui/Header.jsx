@@ -21,7 +21,9 @@ const Header = () => {
         <AppBar>
           <Toolbar>
             <p>وب سایت شخصی یونس قربانی</p>
-            <Button variant="primary">کلیک کن</Button>
+            <Button variant="text" color="secondary">
+              کلیک کن
+            </Button>
           </Toolbar>
         </AppBar>
       </ElevationScroll>
