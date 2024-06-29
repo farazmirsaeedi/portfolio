@@ -4,18 +4,10 @@ import { CacheProvider } from "@emotion/react";
 import { HelmetProvider, Helmet } from "react-helmet-async";
 import createCache from "@emotion/cache";
 import { prefixer } from "stylis";
-import { Button } from "@mui/material";
 
 import Header from "./components/ui/Header";
+import { theme } from "./components/ui/theme";
 import "./App.css";
-
-//NOTE Create Custom Theme
-const theme = createTheme({
-  direction: "rtl",
-  typography: {
-    fontFamily: "vazir, roboto",
-  },
-});
 
 //NOTE Create RTL Cache
 const cacheRTL = createCache({
