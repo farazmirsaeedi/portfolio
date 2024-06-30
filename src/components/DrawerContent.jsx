@@ -1,4 +1,4 @@
-import { Box, Typography, Avatar, Tabs, Tab, Divider } from "@mui/material";
+import { Box, Tabs, Tab, Divider } from "@mui/material";
 import {
     HomeRounded,
     FaceRounded,
@@ -6,10 +6,10 @@ import {
     TerminalRounded,
     MessageRounded,
     ConnectWithoutContactRounded,
-    FavoriteRounded,
-    CopyrightRounded,
 } from "@mui/icons-material";
 import { grey } from "@mui/material/colors";
+import SidebarHeader from "./sidebar/SidebarHeader";
+import SidebarFooter from "./sidebar/SidebarFooter";
 
 const DrawerContent = ({ value, handleChange, setDrawerOpen }) => {
     const tabProps = (index) => {
@@ -26,31 +26,7 @@ const DrawerContent = ({ value, handleChange, setDrawerOpen }) => {
                 mt: 2,
             }}
         >
-            <Avatar
-                src={require("../assets/avatar.jpg")}
-                variant="rounded"
-                sx={{
-                    height: 200,
-                    width: 200,
-                    margin: "0 auto",
-                    display: {
-                        xl: "block",
-                        lg: "block",
-                        md: "block",
-                        sm: "none",
-                        xs: "none",
-                    },
-                }}
-            >
-                FM
-            </Avatar>
-            <Typography variant="h6" color="whitesmoke">
-                فراز میرسعیدی
-            </Typography>
-
-            <Typography variant="caption" color="whitesmoke">
-                برنامه نویس فرانت اند
-            </Typography>
+            <SidebarHeader />
 
             <Divider variant="middle" color={grey[900]} sx={{ mt: 2 }} />
 
@@ -168,34 +144,7 @@ const DrawerContent = ({ value, handleChange, setDrawerOpen }) => {
 
             <Divider variant="middle" color={grey[900]} sx={{ mt: 2 }} />
 
-            <Box
-                sx={{
-                    flexGrow: 1,
-                    display: "flex",
-                    flexDirection: "column",
-                    justifyContent: "end",
-                    alignItems: "center",
-                    height: 100,
-                }}
-            >
-                <Typography variant="subtitle2" color="whitesmoke">
-                    طراحی شده با{" "}
-                    <FavoriteRounded
-                        sx={{
-                            verticalAlign: "middle",
-                            color: "tomato",
-                            height: 20,
-                        }}
-                    />
-                </Typography>
-
-                <Typography variant="caption" color="whitesmoke" sx={{ mt: 2 }}>
-                    کپی رایت ۱۴۰۱{" "}
-                    <CopyrightRounded
-                        sx={{ verticalAlign: "middle", height: 16 }}
-                    />
-                </Typography>
-            </Box>
+            <SidebarFooter />
         </Box>
     );
 };
