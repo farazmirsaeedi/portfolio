@@ -3,13 +3,14 @@ import { useState } from "react";
 import { Typography } from "@mui/material";
 
 import MainLayout from "../layouts/MainLayout";
-import Sidebar from "../components/sidebar/Sidebar";
+import { Sidebar } from "../components/sidebar";
 import ContentContainer from "./ContentContainer";
 import TabPanel from "../components/TabPanel";
 import SidebarContainer from "./SidebarContainer";
 
 function AppContainer() {
     const [value, setValue] = useState(0);
+    const [drawerOpen, setDrawerOpen] = useState(false);
 
     const handleChange = (event, newValue) => {
         setValue(newValue);
