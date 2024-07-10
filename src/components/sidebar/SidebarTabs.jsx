@@ -1,3 +1,5 @@
+import { useContext } from "react";
+
 import { Tabs, Tab } from "@mui/material";
 import {
     HomeRounded,
@@ -9,7 +11,12 @@ import {
 } from "@mui/icons-material";
 import { grey } from "@mui/material/colors";
 
-const SidebarTabs = ({ value, setDrawerOpen, handleChange }) => {
+import MainContext from "../../context";
+
+const SidebarTabs = () => {
+    const { pageNumber, handlePageNumber, setDrawerOpen } =
+        useContext(MainContext);
+
     const tabProps = (index) => {
         return {
             id: `sidebar-tab-${index}`,
@@ -23,8 +30,8 @@ const SidebarTabs = ({ value, setDrawerOpen, handleChange }) => {
             variant="scrollable"
             scrollButton="auto"
             allowScrollButtonsMobile
-            value={value}
-            onChange={handleChange}
+            value={pageNumber}
+            onChange={handlePageNumber}
         >
             <Tab
                 label="صفحه اصلی"
