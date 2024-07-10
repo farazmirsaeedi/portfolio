@@ -1,8 +1,14 @@
+import { useContext } from "react";
+
 import { Fab, Box } from "@mui/material";
 import { MenuRounded } from "@mui/icons-material";
 import { red } from "@mui/material/colors";
 
+import MainContext from "../../context";
+
 const DrawerActionButton = () => {
+    const { setDrawerOpen } = useContext(MainContext);
+
     return (
         <Box
             sx={{
