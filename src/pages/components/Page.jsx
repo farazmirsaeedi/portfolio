@@ -1,7 +1,7 @@
-import { Box, Typography } from "@mui/material";
+import { Box } from "@mui/material";
 
 const Page = (props) => {
-    const { children, pageNumber, index, ...others } = props;
+    const { children, pageNumber, index, helmetTitle, ...others } = props;
 
     return (
         <div

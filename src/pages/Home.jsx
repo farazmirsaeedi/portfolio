@@ -1,42 +1,51 @@
-import { useEffect, useRef } from "react";
+import { useEffect, useRef, useCallback, useState } from "react";
 
+import { Helmet } from "react-helmet-async";
 import { Box, Typography } from "@mui/material";
 import Typed from "typed.js";
+import TextTransition, { presets } from "react-text-transition";
+import Particles from "react-particles";
+import { loadFull } from "tsparticles";
 
+import { links } from "../constants/particles";
 import bg02 from "../assets/bg02.jpeg";
 
 const Home = () => {
+    const [index, setIndex] = useState(0);
+
     const nameEl = useRef(null);
     const infoEl = useRef(null);
 
     const strings = [
-        "من یک توسعه دهنده فرانت اند هستم",
-        "من یک فریلنسر هستم",
+        " برنامه نویس فرانت اند هستم",
+        " فریلنسر هستم",
     ];
 
     useEffect(() => {
         const typedName = new Typed(nameEl.current, {
-            strings: ["[[ فراز میرسعیدی ]]"],
-            typeSpeed: 50,
-            backSpeed: 20,
-            backDelay: 10,
+            strings: [" فراز میرسعیدی "],
+            typeSpeed: 110,
+            backSpeed: 80,
+            backDelay: 50,
             showCursor: false,
         });
 
-        const typedInfo = new Typed(infoEl.current, {
-            strings: strings,
-            startDelay: 1500,
-            typeSpeed: 80,
-            backSpeed: 50,
-            backDelay: 50,
-            loop: true,
-            showCursor: false,
-        });
+        const stringsTransition = setInterval(() => {
+            setIndex((index) => index + 1);
+        }, 3000);
 
         return () => {
             typedName.destroy();
-            typedInfo.destroy();
+            clearInterval(stringsTransition);
         };
+    }, []);
+
+    const particlesInit = useCallback(async (engine) => {
+        await loadFull(engine);
+    }, []);
+
+    const particlesLoaded = useCallback(async (container) => {
+        await console.log(container);
     }, []);
     return (
         <Box
@@ -52,16 +61,53 @@ const Home = () => {
                 alignItems: "center",
             }}
         >
-            <Typography ref={nameEl} variant="h3" color="tomato"></Typography>
-            <Typography
-                ref={infoEl}
-                variant="h4"
-                color="whitesmoke"
-                sx={{
-                    textDecoration: "underline",
-                    textDecorationColor: "#1976d2",
-                }}
-            ></Typography>
+            <Helmet>
+                <title>صفحه اصلی</title>
+            </Helmet>
+            <Particles
+                id="tsparticles"
+                init={particlesInit}
+                loaded={particlesLoaded}
+                options={links}
+            />
+            <Box component="div" sx={{ display: "flex" }}>
+                <Typography variant="h3" color="#F93C92">
+                    {"{{"}
+                </Typography>
+                <Typography
+                    ref={nameEl}
+                    variant="h3"
+                    color="tomato"
+                ></Typography>
+
+                <Typography variant="h3" color="#F93C92">
+                    {"}}"}
+                </Typography>
+            </Box>
+
+            <Box component="div" sx={{ display: "flex" }}>
+                <TextTransition springConfig={presets.wobbly}>
+                    <Typography
+                        variant="h4"
+                        color="whitesmoke"
+                        sx={{
+                            mt: 4,
+                            textDecoration: "underline",
+                            textDecorationColor: "#F93C92",
+                        }}
+                    >
+                        {strings[index % strings.length]}
+                    </Typography>
+                </TextTransition>
+
+                <Typography
+                    variant="h4"
+                    color="whitesmoke"
+                    sx={{ mt: 4, mr: 1 }}
+                >
+                    من یک
+                </Typography>
+            </Box>
         </Box>
     );
 };
