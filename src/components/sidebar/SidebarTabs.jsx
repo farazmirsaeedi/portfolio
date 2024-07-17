@@ -19,6 +19,8 @@ const SidebarTabs = () => {
             scrollButton="auto"
             allowScrollButtonsMobile
             value={pageNumber}
+            indicatorColor="secondary"
+            textColor="secondary"
             onChange={handlePageNumber}
         >
             {data.map((tab, index) => (
