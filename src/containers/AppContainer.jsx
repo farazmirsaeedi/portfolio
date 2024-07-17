@@ -11,7 +11,7 @@ import SidebarContainer from "./SidebarContainer";
 import MainContext from "../context";
 import { DrawerActionButton } from "../components/drawer";
 
-import { Home } from "../pages";
+import { Home, About } from "../pages";
 
 function AppContainer() {
     const [pageNumber, setPageNumber] = useState(0);
@@ -39,12 +39,7 @@ function AppContainer() {
                             <Home />
                         </Page>
                         <Page pageNumber={pageNumber} index={1}>
-                            <Typography
-                                variant="h5"
-                                sx={{ textAlign: "center" }}
-                            >
-                                درباره من
-                            </Typography>
+                            <About />
                         </Page>
                         <Page pageNumber={pageNumber} index={2}>
                             <Typography
