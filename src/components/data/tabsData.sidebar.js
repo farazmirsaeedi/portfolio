@@ -2,7 +2,7 @@ import {
     HomeRounded,
     FaceRounded,
     TextSnippetRounded,
-    TerminalRounded,
+    SchoolRounded,
     MessageRounded,
     ConnectWithoutContactRounded,
 } from "@mui/icons-material";
@@ -16,17 +16,15 @@ const tabProps = (index) => {
 
 export const tabsData = () => {
     const tabs = [
-        { label: "صفحه اصلی", icon: <HomeRounded />, ...tabProps(0) },
-        { label: "درباره من", icon: <FaceRounded />, ...tabProps(1) },
-        { label: "رزومه من", icon: <TextSnippetRounded />, ...tabProps(2) },
-        { label: "نمونه کارها", icon: <TerminalRounded />, ...tabProps(3) },
-        { label: "نظرات دانشجویان", icon: <MessageRounded />, ...tabProps(4) },
+        { label: "صفحه اصلی", icon: < HomeRounded / > , ...tabProps(0) },
+        { label: "درباره من", icon: < FaceRounded / > , ...tabProps(1) },
+        { label: "رزومه من", icon: < TextSnippetRounded / > , ...tabProps(2) },
         {
             label: "ارتباط با من",
-            icon: <ConnectWithoutContactRounded />,
+            icon: < ConnectWithoutContactRounded / > ,
             ...tabProps(5),
         },
     ];
 
     return tabs;
-};
+}

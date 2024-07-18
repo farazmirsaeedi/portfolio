@@ -13,7 +13,7 @@ const SidebarFooter = () => {
                 height: 100,
             }}
         >
-            <Typography variant="subtitle2" color="whitesmoke">
+            <Typography variant="subtitle2" color="text.primary">
                 طراحی شده با{" "}
                 <FavoriteRounded
                     sx={{
