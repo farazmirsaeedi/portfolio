@@ -1,6 +1,7 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 
-import { Typography } from "@mui/material";
+import { Typography, useMediaQuery } from "@mui/material";
+import { useTheme } from "@mui/material/styles";
 import SwipeableViews from "react-swipeable-views";
 
 import MainLayout from "../layouts/MainLayout";
@@ -11,21 +12,46 @@ import SidebarContainer from "./SidebarContainer";
 import MainContext from "../context";
 import { DrawerActionButton } from "../components/drawer";
 
-import { Home, About } from "../pages";
+import { Home, About, Resume, Courses, Comments, Contact } from "../pages";
 
 function AppContainer() {
     const [pageNumber, setPageNumber] = useState(0);
     const [drawerOpen, setDrawerOpen] = useState(false);
+    const [mode, setMode] = useState();
+
+    const theme = useTheme();
+    const isMdUp = useMediaQuery(theme.breakpoints.up("md"));
+    const prefersDarkMode = useMediaQuery("(prefers-color-scheme: dark)");
+
+    useEffect(() => {
+        setMode(prefersDarkMode ? "dark" : "light");
+    }, []);
+
+    useEffect(() => {
+        if (isMdUp) {
+            setDrawerOpen(false);
+        }
+    }, [isMdUp]);
 
     const handlePageNumber = (event, newPage) => {
         setPageNumber(newPage);
     };
 
+    const handleThemeChange = () => {
+        setMode((prevMode) => (prevMode === "light" ? "dark" : "light"));
+    };
+
     return (
         <MainContext.Provider
-            value={{ pageNumber, handlePageNumber, drawerOpen, setDrawerOpen }}
+            value={{
+                pageNumber,
+                handlePageNumber,
+                handleThemeChange,
+                drawerOpen,
+                setDrawerOpen,
+            }}
         >
-            <MainLayout>
+            <MainLayout mode={mode}>
                 <SidebarContainer>
                     <Sidebar />
                 </SidebarContainer>
@@ -36,42 +62,17 @@ function AppContainer() {
                         onChangeIndex={handlePageNumber}
                     >
                         <Page pageNumber={pageNumber} index={0}>
-                            <Home />
+                            <Home helmetTitle="وب سایت شخصی" />
                         </Page>
                         <Page pageNumber={pageNumber} index={1}>
-                            <About />
+                            <About helmetTitle="وب سایت شخصی" />
                         </Page>
                         <Page pageNumber={pageNumber} index={2}>
-                            <Typography
-                                variant="h5"
-                                sx={{ textAlign: "center" }}
-                            >
-                                رزومه من
-                            </Typography>
+                            <Resume helmetTitle="وب سایت شخصی" />
                         </Page>
+                        
                         <Page pageNumber={pageNumber} index={3}>
-                            <Typography
-                                variant="h5"
-                                sx={{ textAlign: "center" }}
-                            >
-                                نمونه کارها
-                            </Typography>
-                        </Page>
-                        <Page pageNumber={pageNumber} index={4}>
-                            <Typography
-                                variant="h5"
-                                sx={{ textAlign: "center" }}
-                            >
-                                نظرات دانشجویان
-                            </Typography>
-                        </Page>
-                        <Page pageNumber={pageNumber} index={5}>
-                            <Typography
-                                variant="h5"
-                                sx={{ textAlign: "center" }}
-                            >
-                                ارتباط با من
-                            </Typography>
+                            <Contact helmetTitle="وب سایت شخصی" />
                         </Page>
                     </SwipeableViews>
                 </PagesContainer>
