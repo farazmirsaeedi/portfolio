@@ -10,7 +10,7 @@ import { loadFull } from "tsparticles";
 import { links } from "../constants/particles";
 import bg02 from "../assets/bg02.jpeg";
 
-const Home = () => {
+const Home = ({ helmetTitle }) => {
     const [index, setIndex] = useState(0);
 
     const nameEl = useRef(null);
@@ -62,7 +62,7 @@ const Home = () => {
             }}
         >
             <Helmet>
-                <title>صفحه اصلی</title>
+                <title>{helmetTitle}</title>
             </Helmet>
             <Particles
                 id="tsparticles"
