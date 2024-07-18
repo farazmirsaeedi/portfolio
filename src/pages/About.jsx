@@ -52,7 +52,7 @@ const About = ({ helmetTitle }) => {
                 return Math.min(oldProgress + diff, 95);
             });
 
-            setNodeJs((oldProgress) => {
+            setJquery((oldProgress) => {
                 const diff = Math.random() * 10;
                 return Math.min(oldProgress + diff, 86);
             });
