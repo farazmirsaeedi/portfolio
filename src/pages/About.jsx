@@ -1,7 +1,10 @@
 import { useState, useEffect } from "react";
 
 import { Helmet } from "react-helmet-async";
+import CountUp from "react-countup";
 import {
+    Tooltip,
+    Box,
     Typography,
     Card,
     CardContent,
@@ -17,8 +20,9 @@ import DevInfo from "./components/DevInfo";
 import Skill from "./components/Skill";
 import avatar from "../assets/avatar02.jpg";
 import { devSkills } from "../constants/skills";
+import { devWorkInfo } from "../constants/details";
 
-const About = () => {
+const About = ({ helmetTitle }) => {
     const [javascript, setJavascript] = useState(0);
     const [html, setHtml] = useState(0);
     const [css, setCss] = useState(0);
@@ -48,7 +52,7 @@ const About = () => {
                 return Math.min(oldProgress + diff, 95);
             });
 
-            setJquery((oldProgress) => {
+            setNodeJs((oldProgress) => {
                 const diff = Math.random() * 10;
                 return Math.min(oldProgress + diff, 86);
             });
@@ -76,7 +80,7 @@ const About = () => {
             }}
         >
             <Helmet>
-                <title>درباره من</title>
+                <title>{helmetTitle}</title>
             </Helmet>
             <CardContent>
                 <Grid container sx={{ mx: 3 }}>
@@ -105,10 +109,68 @@ const About = () => {
                             />
                         </Divider>
 
-                        <DevInfo>نام و نام خانوادگی : فراز میرسعیدی</DevInfo>
+                        <Grid container>
+                            <Grid
+                                xs={4}
+                                sm={4}
+                                md={3}
+                                lg={3}
+                                sx={{
+                                    mt: 3,
+                                    display: {
+                                        xs: "none",
+                                        sm: "block",
+                                        md: "block",
+                                    },
+                                }}
+                            >
+                                {devWorkInfo.map((item, index) => (
+                                    <Box
+                                        key={index}
+                                        component="div"
+                                        sx={{ width: 1, mb: 1 }}
+                                    >
+                                        <Tooltip
+                                            title={item.tooltipTitle}
+                                            placement="right"
+                                            arrow
+                                        >
+                                            <Chip
+                                                icon={item.icon}
+                                                label={
+                                                    <Typography
+                                                        variant="body1"
+                                                        color="whitesmoke"
+                                                    >
+                                                        <CountUp
+                                                            start={0}
+                                                            end={item.total}
+                                                            duration={2}
+                                                        />
+                                                    </Typography>
+                                                }
+                                                sx={{
+                                                    p: 2,
+                                                    backgroundColor: item.color,
+                                                    width: 1,
+                                                }}
+                                            />
+                                        </Tooltip>
+                                    </Box>
+                                ))}
+                            </Grid>
+
+                            <Grid xs={12} sm={8} md={9} lg={9}>
+                                <DevInfo>
+                                    نام و نام خانوادگی : فراز میرسعیدی
+                                </DevInfo>
                         <DevInfo>سن : 25</DevInfo>
                         <DevInfo>شهر : تهران</DevInfo>
-                        <DevInfo>farazmirsaeedi@gmail.com : آدرس ایمیل</DevInfo>
+                                <DevInfo>
+                                    farazmirsaeedi@gmail.com : آدرس ایمیل
+                                </DevInfo>
+                            </Grid>
+                        </Grid>
                     </Grid>
                     <Grid xs={0} sm={0} md={4} lg={4} xl={4}>
                         <Avatar
