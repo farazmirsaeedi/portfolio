@@ -4,6 +4,7 @@ import { Avatar, Typography, Box, IconButton } from "@mui/material";
 import { RandomReveal } from "react-random-reveal";
 import { GitHub, Telegram, Instagram, WhatsApp } from "@mui/icons-material";
 
+import ThemeActionButton from "../ThemeActionButton";
 import avatar from "../../assets/avatar.jpg";
 import { alphabetPersian } from "../../constants/alphabetPersian";
 
@@ -12,6 +13,7 @@ const SidebarHeader = () => {
 
     return (
         <>
+            <ThemeActionButton />
             <Avatar
                 src={avatar}
                 variant="rounded"
