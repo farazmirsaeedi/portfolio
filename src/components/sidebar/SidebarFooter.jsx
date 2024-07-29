@@ -24,7 +24,7 @@ const SidebarFooter = () => {
                 />
             </Typography>
 
-            <Typography variant="caption" color="whitesmoke" sx={{ mt: 2 }}>
+            <Typography variant="caption" color="text.primery" sx={{ mt: 2 }}>
                 کپی رایت 1403{" "}
                 <CopyrightRounded
                     sx={{ verticalAlign: "middle", height: 16 }}
